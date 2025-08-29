@@ -15,6 +15,7 @@ class Post {
   final DateTime? postedAt;
   final String? postUrl;
   final String? campaign;
+  final List<String> mentions;
 
   Post({
     required this.id,
@@ -31,6 +32,7 @@ class Post {
     this.postedAt,
     this.postUrl,
     this.campaign,
+    this.mentions = const [],
   });
 
   Post copyWith({
@@ -48,6 +50,7 @@ class Post {
     DateTime? postedAt,
     String? postUrl,
     String? campaign,
+    List<String>? mentions,
   }) {
     return Post(
       id: id ?? this.id,
@@ -64,6 +67,7 @@ class Post {
       postedAt: postedAt ?? this.postedAt,
       postUrl: postUrl ?? this.postUrl,
       campaign: campaign ?? this.campaign,
+      mentions: mentions ?? this.mentions,
     );
   }
 
@@ -83,6 +87,7 @@ class Post {
       'postedAt': postedAt?.toIso8601String(),
       'postUrl': postUrl,
       'campaign': campaign,
+      'mentions': mentions,
     };
   }
 
@@ -105,6 +110,8 @@ class Post {
           json['postedAt'] != null ? DateTime.parse(json['postedAt']) : null,
       postUrl: json['postUrl'],
       campaign: json['campaign'],
+      mentions:
+          json['mentions'] != null ? List<String>.from(json['mentions']) : [],
     );
   }
 }

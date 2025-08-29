@@ -29,6 +29,7 @@ class DummyDataService {
       platforms: [SocialPlatform.linkedin, SocialPlatform.twitter],
       additionalLinks: ['https://lnkd.in/efcRfi9T', 'https://01founders.com'],
       campaign: 'IO Extended 2025',
+      mentions: ['Google Developers', 'GDG London'],
     ),
     Post(
       id: '2',
@@ -48,6 +49,7 @@ class DummyDataService {
       ],
       additionalLinks: ['https://lnkd.in/e5YtkwWG', 'https://marshmallow.com'],
       campaign: 'Android Circuit Series',
+      mentions: ['Tom Colvin', 'Android Developers'],
     ),
     Post(
       id: '3',
@@ -65,6 +67,7 @@ class DummyDataService {
       postedAt: DateTime(2025, 8, 29, 10, 0),
       postUrl: 'https://www.linkedin.com/posts/gdg-london-breaking-barriers',
       campaign: 'Breaking Barriers Podcast',
+      mentions: ['Stefan C.', 'Tech Community'],
     ),
     Post(
       id: '4',
@@ -82,6 +85,7 @@ class DummyDataService {
       postedAt: DateTime(2025, 8, 30, 14, 30),
       postUrl: 'https://www.linkedin.com/posts/gdg-london-flutter-devcamp',
       campaign: 'Flutter DevCamp India',
+      mentions: ['Career Katta', 'Garja Maarthi', 'Sakpal Knowledge Hub'],
     ),
     Post(
       id: '5',

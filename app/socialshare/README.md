@@ -104,6 +104,8 @@ class Post {
 - **Flutter SDK**: 3.2.3 or higher
 - **Dart SDK**: Latest stable version
 - **Web Browser**: Chrome, Firefox, Safari, or Edge
+- **Firebase CLI**: For hosting and deployment
+- **Node.js**: Required for Firebase tools
 
 ### Installation
 1. **Clone the repository**
@@ -117,12 +119,24 @@ class Post {
    flutter pub get
    ```
 
-3. **Run the application**
+3. **Install Firebase CLI and FlutterFire**
+   ```bash
+   npm install -g firebase-tools
+   dart pub global activate flutterfire_cli
+   ```
+
+4. **Configure Firebase for your project**
+   ```bash
+   firebase login
+   flutterfire configure --project=
+   ```
+
+5. **Run the application locally**
    ```bash
    flutter run -d chrome
    ```
 
-4. **Access the app**
+6. **Access the app**
    - Open your browser and navigate to `http://localhost:8080`
    - The app will automatically reload when you make changes
 
@@ -138,6 +152,11 @@ class Post {
 - **`flutter_svg`**: SVG icon support
 - **`image_picker`**: Image selection functionality
 - **`file_picker`**: File selection capabilities
+
+### Firebase Integration
+- **`firebase_core`**: Core Firebase functionality
+- **`firebase_analytics`**: Analytics and user behavior tracking
+- **`firebase_hosting`**: Web hosting and deployment
 
 ## 🎯 Usage Guide
 
@@ -170,6 +189,14 @@ class Post {
 
 ## 🔧 Development
 
+### Firebase Configuration
+The app is configured to use Firebase for hosting and analytics. The configuration files are automatically generated when you run `flutterfire configure`.
+
+**Important Files:**
+- `lib/firebase_options.dart` - Firebase configuration options
+- `.firebaserc` - Firebase project configuration
+- `firebase.json` - Firebase hosting and deployment settings
+
 ### Running Tests
 ```bash
 flutter test
@@ -184,6 +211,21 @@ flutter analyze
 ```bash
 flutter build web
 ```
+
+### Firebase Hosting Deployment
+1. **Build the web app**
+   ```bash
+   flutter build web
+   ```
+
+2. **Deploy to Firebase Hosting**
+   ```bash
+   firebase deploy --only hosting
+   ```
+
+3. **Access your live app**
+   - Your app will be available at the Firebase hosting URL
+   - Check the Firebase console for your hosting URL
 
 ### Hot Reload
 - Save any file to trigger automatic reload
@@ -233,6 +275,7 @@ This is a demo application for GDG London. We welcome contributions and improvem
 - **Firefox**: Full support
 - **Safari**: Full support
 - **Edge**: Full support
+- **Firebase Hosting**: Production deployment and hosting
 
 ### Future Platforms
 - **Mobile**: iOS and Android support planned
@@ -246,6 +289,7 @@ This is a demo application for GDG London. We welcome contributions and improvem
 - ✅ Calendar view
 - ✅ Multi-platform support
 - ✅ Modern UI/UX
+- ✅ Firebase hosting setup
 
 ### Phase 2 (Planned)
 - 🔄 Analytics dashboard

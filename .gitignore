@@ -27,3 +27,9 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+app/socialshare/.firebaserc
+app/socialshare/firebase.json
+app/socialshare/android/app/google-services.json
+app/socialshare/lib/firebase_options.dart
+app/socialshare/public/
+app/socialshare/.firebase/

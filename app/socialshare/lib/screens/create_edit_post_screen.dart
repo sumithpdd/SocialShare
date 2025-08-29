@@ -37,12 +37,14 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
   final _tagController = TextEditingController();
   final _additionalLinkController = TextEditingController();
   final _campaignController = TextEditingController();
+  final _mentionController = TextEditingController();
 
   DateTime _selectedDate = DateTime.now();
   final List<SocialPlatform> _selectedPlatforms = [];
   final List<String> _tags = [];
   final List<String> _additionalLinks = [];
   final List<String> _selectedTeamMembers = []; // New field for multi-select
+  final List<String> _mentions = []; // New field for mentions
 
   @override
   void initState() {
@@ -59,6 +61,7 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
     _tagController.dispose();
     _additionalLinkController.dispose();
     _campaignController.dispose();
+    _mentionController.dispose();
     super.dispose();
   }
 
@@ -83,6 +86,8 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
       _additionalLinks.clear();
       _additionalLinks.addAll(post.additionalLinks);
       _campaignController.text = post.campaign ?? '';
+      _mentions.clear();
+      _mentions.addAll(post.mentions);
     }
   }
 
@@ -112,7 +117,9 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                               ),
                               const SizedBox(width: 16),
                               Text(
-                                widget.postToEdit != null ? 'Edit Post' : 'Create New Post',
+                                widget.postToEdit != null
+                                    ? 'Edit Post'
+                                    : 'Create New Post',
                                 style: AppTheme.headlineLarge,
                               ),
                             ],
@@ -131,6 +138,8 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                                   _buildPlatformsSection(),
                                   const SizedBox(height: 24),
                                   _buildTagsSection(),
+                                  const SizedBox(height: 24),
+                                  _buildMentionsSection(),
                                   const SizedBox(height: 24),
                                   _buildAdditionalLinksSection(),
                                   const SizedBox(height: 32),
@@ -183,6 +192,12 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                 ),
                 const SizedBox(width: 8),
                 IconButton(
+                  onPressed: () => _generateAIContent('title'),
+                  icon: const Icon(Icons.auto_awesome, color: Colors.amber),
+                  tooltip: 'Generate AI title',
+                ),
+                const SizedBox(width: 8),
+                IconButton(
                   onPressed: _titleController.text.isNotEmpty
                       ? () => _copyToClipboard(_titleController.text, 'Title')
                       : null,
@@ -207,16 +222,19 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                       ),
                       const SizedBox(height: 8),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.withValues(alpha: 0.3)),
+                          border: Border.all(
+                              color: Colors.grey.withValues(alpha: 0.3)),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Wrap(
                           spacing: 8,
                           runSpacing: 8,
                           children: teamMembers.map((member) {
-                            final isSelected = _selectedTeamMembers.contains(member);
+                            final isSelected =
+                                _selectedTeamMembers.contains(member);
                             return FilterChip(
                               label: Text(member),
                               selected: isSelected,
@@ -229,7 +247,8 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                                   }
                                 });
                               },
-                              selectedColor: AppTheme.primaryBlue.withValues(alpha: 0.2),
+                              selectedColor:
+                                  AppTheme.primaryBlue.withValues(alpha: 0.2),
                               checkmarkColor: AppTheme.primaryBlue,
                             );
                           }).toList(),
@@ -351,6 +370,12 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                   ),
                 ),
                 const SizedBox(width: 8),
+                IconButton(
+                  onPressed: () => _generateAIContent('content'),
+                  icon: const Icon(Icons.auto_awesome, color: Colors.amber),
+                  tooltip: 'Generate AI content',
+                ),
+                const SizedBox(width: 8),
                 if (_contentController.text.isNotEmpty)
                   IconButton(
                     onPressed: () =>
@@ -397,6 +422,12 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                       hintText: 'https://example.com/image.jpg',
                     ),
                   ),
+                ),
+                const SizedBox(width: 8),
+                IconButton(
+                  onPressed: () => _generateAIContent('image'),
+                  icon: const Icon(Icons.auto_awesome, color: Colors.amber),
+                  tooltip: 'Generate AI image suggestion',
                 ),
                 const SizedBox(width: 8),
                 if (_imageUrlController.text.isNotEmpty)
@@ -506,9 +537,15 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Tags',
-              style: AppTheme.headlineMedium,
+            const Row(
+              children: [
+                Icon(Icons.auto_awesome, color: Colors.amber, size: 20),
+                SizedBox(width: 8),
+                Text(
+                  'Tags',
+                  style: AppTheme.headlineMedium,
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Row(
@@ -531,7 +568,13 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                     tooltip: 'Copy tag',
                     color: AppTheme.primaryBlue,
                   ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 8),
+                IconButton(
+                  onPressed: () => _generateAIContent('tags'),
+                  icon: const Icon(Icons.auto_awesome, color: Colors.amber),
+                  tooltip: 'Generate AI tags',
+                ),
+                const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: _addTag,
                   child: const Icon(Icons.add),
@@ -547,6 +590,78 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
                     .map((tag) => Chip(
                           label: Text(tag),
                           onDeleted: () => _removeTag(tag),
+                          deleteIcon: const Icon(Icons.close, size: 18),
+                        ))
+                    .toList(),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMentionsSection() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.auto_awesome, color: Colors.amber, size: 20),
+                SizedBox(width: 8),
+                Text(
+                  'Mentions',
+                  style: AppTheme.headlineMedium,
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    controller: _mentionController,
+                    decoration: const InputDecoration(
+                      labelText: 'Add Mention',
+                      hintText: 'Enter a person to mention and press +',
+                      prefixIcon: Icon(Icons.person_add),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                if (_mentionController.text.isNotEmpty)
+                  IconButton(
+                    onPressed: () =>
+                        _copyToClipboard(_mentionController.text, 'Mention'),
+                    icon: const Icon(Icons.copy),
+                    tooltip: 'Copy mention',
+                    color: AppTheme.primaryBlue,
+                  ),
+                const SizedBox(width: 8),
+                IconButton(
+                  onPressed: () => _generateAIContent('mentions'),
+                  icon: const Icon(Icons.auto_awesome, color: Colors.amber),
+                  tooltip: 'Generate AI mentions',
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: _addMention,
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            ),
+            if (_mentions.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: _mentions
+                    .map((mention) => Chip(
+                          label: Text(mention),
+                          onDeleted: () => _removeMention(mention),
                           deleteIcon: const Icon(Icons.close, size: 18),
                         ))
                     .toList(),
@@ -626,10 +741,11 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
           child: const Text('Cancel'),
         ),
         const SizedBox(width: 16),
-                  ElevatedButton(
-            onPressed: _submitPost,
-            child: Text(widget.postToEdit != null ? 'Update Post' : 'Create Post'),
-          ),
+        ElevatedButton(
+          onPressed: _submitPost,
+          child:
+              Text(widget.postToEdit != null ? 'Update Post' : 'Create Post'),
+        ),
       ],
     );
   }
@@ -648,6 +764,249 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
     setState(() {
       _tags.remove(tag);
     });
+  }
+
+  void _addMention() {
+    final mention = _mentionController.text.trim();
+    if (mention.isNotEmpty && !_mentions.contains(mention)) {
+      setState(() {
+        _mentions.add(mention);
+        _mentionController.clear();
+      });
+    }
+  }
+
+  void _removeMention(String mention) {
+    setState(() {
+      _mentions.remove(mention);
+    });
+  }
+
+  void _generateAIContent(String fieldType) {
+    // Show a dialog to get context for AI generation
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        String contextText = '';
+        return AlertDialog(
+          title: Row(
+            children: [
+              const Icon(Icons.auto_awesome, color: Colors.amber),
+              const SizedBox(width: 8),
+              Text('Generate AI ${fieldType.toUpperCase()}'),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('Provide some context for AI generation:'),
+              const SizedBox(height: 16),
+              TextField(
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  hintText:
+                      'e.g., "AI workshop for developers", "Flutter meetup in London"',
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  contextText = value;
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _processAIGeneration(fieldType, contextText);
+              },
+              icon: const Icon(Icons.auto_awesome),
+              label: const Text('Generate'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _processAIGeneration(String fieldType, String contextText) {
+    // Simulate AI content generation
+    // In a real app, this would call an AI API
+    String generatedContent = '';
+
+    switch (fieldType) {
+      case 'title':
+        generatedContent = _generateAITitle(contextText);
+        break;
+      case 'content':
+        generatedContent = _generateAIContentText(contextText);
+        break;
+      case 'image':
+        generatedContent = _generateAIImageSuggestion(contextText);
+        break;
+      case 'tags':
+        _generateAITags(contextText);
+        return; // Return early for tags since they're handled differently
+      case 'mentions':
+        _generateAIMentions(contextText);
+        return; // Return early for mentions since they're handled differently
+    }
+
+    if (generatedContent.isNotEmpty) {
+      setState(() {
+        switch (fieldType) {
+          case 'title':
+            _titleController.text = generatedContent;
+            break;
+          case 'content':
+            _contentController.text = generatedContent;
+            break;
+          case 'image':
+            _imageUrlController.text = generatedContent;
+            break;
+        }
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('AI generated $fieldType content!'),
+          backgroundColor: Colors.green,
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+  }
+
+  String _generateAITitle(String context) {
+    if (context.isEmpty) {
+      context = 'tech event';
+    }
+
+    final titles = [
+      '🚀 ${context.split(' ').take(3).join(' ')} - Join Us!',
+      '🌟 Exciting $context - Don\'t Miss Out!',
+      '💡 $context - Innovation Awaits!',
+      '🎯 $context - Your Next Big Opportunity!',
+      '🔥 $context - Be Part of Something Amazing!',
+    ];
+
+    return titles[DateTime.now().millisecondsSinceEpoch % titles.length];
+  }
+
+  String _generateAIContentText(String context) {
+    if (context.isEmpty) {
+      context = 'tech event';
+    }
+
+    return '''🚀 Exciting news! We're thrilled to announce our upcoming $context!
+
+💡 What to expect:
+• Engaging sessions and workshops
+• Networking opportunities
+• Latest insights and trends
+• Hands-on learning experiences
+
+🎯 Perfect for developers, designers, and tech enthusiasts at all levels.
+
+📅 Save the date and stay tuned for more details!
+
+#${context.replaceAll(' ', '')} #TechCommunity #Innovation #Learning
+
+Join us and be part of this amazing journey! 🌟''';
+  }
+
+  String _generateAIImageSuggestion(String context) {
+    if (context.isEmpty) {
+      context = 'tech event';
+    }
+
+    final imageSuggestions = [
+      'https://via.placeholder.com/800x400/4285F4/FFFFFF?text=${Uri.encodeComponent(context)}',
+      'https://via.placeholder.com/800x400/3DDC84/FFFFFF?text=${Uri.encodeComponent(context)}',
+      'https://via.placeholder.com/800x400/FF6B6B/FFFFFF?text=${Uri.encodeComponent(context)}',
+      'https://via.placeholder.com/800x400/9C27B0/FFFFFF?text=${Uri.encodeComponent(context)}',
+    ];
+
+    return imageSuggestions[
+        DateTime.now().millisecondsSinceEpoch % imageSuggestions.length];
+  }
+
+  void _generateAITags(String contextText) {
+    if (contextText.isEmpty) {
+      contextText = 'tech event';
+    }
+
+    final tagSets = [
+      [(contextText.split(' ').first), 'Tech', 'Innovation', 'Community'],
+      [
+        (contextText.replaceAll(' ', '')),
+        'Development',
+        'Learning',
+        'Networking'
+      ],
+      [
+        (contextText.split(' ').take(2).join('')),
+        'Workshop',
+        'Conference',
+        'Meetup'
+      ],
+      ['${contextText.split(' ').first}Dev', 'Programming', 'Skills', 'Growth'],
+    ];
+
+    final selectedTags =
+        tagSets[DateTime.now().millisecondsSinceEpoch % tagSets.length];
+
+    setState(() {
+      for (final tag in selectedTags) {
+        if (!_tags.contains(tag)) {
+          _tags.add(tag);
+        }
+      }
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('AI generated tags added!'),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  void _generateAIMentions(String contextText) {
+    if (contextText.isEmpty) {
+      contextText = 'tech event';
+    }
+
+    final mentionSets = [
+      ['Google Developers', 'GDG London', 'Tech Community'],
+      ['Flutter Team', 'Android Developers', 'Web Developers'],
+      ['AI Researchers', 'ML Engineers', 'Data Scientists'],
+      ['Startup Founders', 'Tech Leaders', 'Innovation Hub'],
+    ];
+
+    final selectedMentions =
+        mentionSets[DateTime.now().millisecondsSinceEpoch % mentionSets.length];
+
+    setState(() {
+      for (final mention in selectedMentions) {
+        if (!_mentions.contains(mention)) {
+          _mentions.add(mention);
+        }
+      }
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('AI generated mentions added!'),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
 
   void _addAdditionalLink() {
@@ -727,12 +1086,19 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
         content: _contentController.text,
         date: _selectedDate,
         postedBy: _selectedTeamMembers.join(', '),
-        imageUrl: _imageUrlController.text.isNotEmpty ? _imageUrlController.text : null,
-        videoUrl: _videoUrlController.text.isNotEmpty ? _videoUrlController.text : null,
+        imageUrl: _imageUrlController.text.isNotEmpty
+            ? _imageUrlController.text
+            : null,
+        videoUrl: _videoUrlController.text.isNotEmpty
+            ? _videoUrlController.text
+            : null,
         tags: _tags,
         platforms: _selectedPlatforms,
         additionalLinks: _additionalLinks,
-        campaign: _campaignController.text.isNotEmpty ? _campaignController.text : null,
+        campaign: _campaignController.text.isNotEmpty
+            ? _campaignController.text
+            : null,
+        mentions: _mentions,
       );
 
       context.read<PostProvider>().updatePost(updatedPost);
@@ -752,12 +1118,19 @@ class _CreateEditPostScreenState extends State<CreateEditPostScreen> {
         date: _selectedDate,
         isPosted: false,
         postedBy: _selectedTeamMembers.join(', '),
-        imageUrl: _imageUrlController.text.isNotEmpty ? _imageUrlController.text : null,
-        videoUrl: _videoUrlController.text.isNotEmpty ? _videoUrlController.text : null,
+        imageUrl: _imageUrlController.text.isNotEmpty
+            ? _imageUrlController.text
+            : null,
+        videoUrl: _videoUrlController.text.isNotEmpty
+            ? _videoUrlController.text
+            : null,
         tags: _tags,
         platforms: _selectedPlatforms,
         additionalLinks: _additionalLinks,
-        campaign: _campaignController.text.isNotEmpty ? _campaignController.text : null,
+        campaign: _campaignController.text.isNotEmpty
+            ? _campaignController.text
+            : null,
+        mentions: _mentions,
       );
 
       context.read<PostProvider>().addPost(post);
