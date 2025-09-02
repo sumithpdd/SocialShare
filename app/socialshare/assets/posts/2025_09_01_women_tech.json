@@ -1,0 +1,13 @@
+{
+  "id": "6",
+  "title": "Women Techmakers London Meetup",
+  "content": "Join us for an inspiring evening with Women Techmakers London! We'll be discussing career growth, technical skills, and building inclusive tech communities. All genders welcome!",
+  "date": "2025-09-01T00:00:00.000Z",
+  "isPosted": false,
+  "postedBy": "Women Techmakers London",
+  "imageUrl": "https://via.placeholder.com/800x400/E91E63/FFFFFF?text=Women+Techmakers",
+  "tags": ["Women in Tech", "Career Growth", "Networking", "London"],
+  "platforms": ["linkedin", "twitter", "instagram"],
+  "additionalLinks": ["https://women.techmakers.com", "https://meetup.com/wtm-london"],
+  "campaign": "Women Techmakers London"
+}

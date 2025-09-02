@@ -77,9 +77,12 @@ class _CustomNavigationRailState extends State<CustomNavigationRail> {
         context.go('/create');
         break;
       case 3:
-        // Analytics route - can be implemented later
+        context.go('/ai-create');
         break;
       case 4:
+        // Analytics route - can be implemented later
+        break;
+      case 5:
         // Settings route - can be implemented later
         break;
     }

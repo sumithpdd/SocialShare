@@ -82,6 +82,16 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(width: 16),
             ElevatedButton.icon(
+              onPressed: () => context.go('/ai-create'),
+              icon: const Icon(Icons.auto_awesome),
+              label: const Text('AI Post Creator ✨'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Colors.white,
+              ),
+            ),
+            const SizedBox(width: 16),
+            ElevatedButton.icon(
               onPressed: () => context.go('/calendar'),
               icon: const Icon(Icons.calendar_today),
               label: const Text('View Calendar'),

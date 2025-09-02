@@ -52,6 +52,12 @@ A modern Flutter web application for managing social media posts across multiple
 - **Provider Pattern**: Clean state management using the Provider package
 - **ChangeNotifier**: Efficient UI updates and state synchronization
 
+### AI & Firebase Integration
+- **Firebase AI Logic**: Google's Gemini API for AI-powered content generation
+- **Firebase Storage**: Cloud storage for image uploads and media management
+- **Firebase Core**: Backend services and authentication
+- **Multi-Platform AI**: Web-compatible AI content generation
+
 ### Navigation
 - **Go Router**: Modern routing solution with deep linking support
 - **Navigation Rail**: Desktop-optimized side navigation
@@ -335,3 +341,50 @@ This project is for educational and demonstration purposes. Feel free to use, mo
 **Built with ❤️ for the GDG London community**
 
 *For questions, suggestions, or contributions, please reach out to our team or open an issue on this repository.*
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Flutter SDK (latest stable version)
+- Firebase project with AI Logic API enabled
+- Web browser (Chrome/Edge recommended for development)
+
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
+cd SocialShare/app/socialshare
+
+# Install dependencies
+flutter pub get
+
+# Run the application
+flutter run -d web-server
+```
+
+### AI Post Creator Quick Start ✨
+
+1. **Enable Firebase AI Logic API**:
+   - Visit [Google Cloud Console](https://console.developers.google.com/apis/api/firebasevertexai.googleapis.com/overview)
+   - Enable the Firebase AI Logic API for your project
+
+2. **Access AI Post Creator**:
+   - Click "AI Post Creator ✨" button on the home screen
+   - Or use the "AI Creator" option in the left navigation rail
+
+3. **Create Your First AI Post**:
+   - Enter a topic (e.g., "Flutter Development Tips")
+   - Choose a style (e.g., "Professional")
+   - Optionally upload an image
+   - Click "Generate with AI ✨"
+
+4. **Select Your Variants**:
+   - Choose from 3 AI-generated title options
+   - Select from 3 content variants
+   - Pick preferred hashtags and mentions
+   - Preview your final post
+
+5. **Save and Use**:
+   - Review the complete post
+   - Click "Create Post" to save
+   - Post is automatically saved to assets/posts folder

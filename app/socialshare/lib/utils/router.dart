@@ -3,6 +3,7 @@ import '../screens/home_screen.dart';
 import '../screens/calendar_screen.dart';
 import '../screens/post_detail_screen.dart';
 import '../screens/create_edit_post_screen.dart';
+import '../widgets/ai_post_creator.dart';
 import '../models/post.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -23,13 +24,17 @@ final GoRouter appRouter = GoRouter(
         return PostDetailScreen(postId: postId);
       },
     ),
-          GoRoute(
-        path: '/create',
-        builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>?;
-          final editPost = extra?['editPost'] as Post?;
-          return CreateEditPostScreen(postToEdit: editPost);
-        },
-      ),
+    GoRoute(
+      path: '/create',
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>?;
+        final editPost = extra?['editPost'] as Post?;
+        return CreateEditPostScreen(postToEdit: editPost);
+      },
+    ),
+    GoRoute(
+      path: '/ai-create',
+      builder: (context, state) => const AIPostCreator(),
+    ),
   ],
 );

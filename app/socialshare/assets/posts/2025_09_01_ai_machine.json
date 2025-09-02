@@ -1,0 +1,13 @@
+{
+  "id": "10",
+  "title": "AI & Machine Learning Workshop",
+  "content": "🤖 Dive deep into AI and ML with hands-on workshops covering TensorFlow, Google Cloud AI, and practical applications. Perfect for developers at all levels.",
+  "date": "2025-09-05T00:00:00.000Z",
+  "isPosted": false,
+  "postedBy": "AI London Community",
+  "imageUrl": "https://via.placeholder.com/800x400/9C27B0/FFFFFF?text=AI+Workshop",
+  "tags": ["AI/ML", "TensorFlow", "Workshop", "Hands-on"],
+  "platforms": ["linkedin", "twitter"],
+  "additionalLinks": ["https://ai.google", "https://cloud.google.com/ai"],
+  "campaign": "AI/ML Workshop Series"
+}
