@@ -1,0 +1,14 @@
+{
+  "id": "2",
+  "title": "The Android Circuit - New Event Series",
+  "content": "All aboard! Announcing The Android Circuit, a brand new event series for London's Android developers! Building on the Android Workshop Wednesdays series, GDG London and Tom Colvin are launching the next chapter of community-driven events.",
+  "date": "2025-08-28T00:00:00.000Z",
+  "isPosted": false,
+  "postedBy": "GDG London Team",
+  "imageUrl": "https://via.placeholder.com/800x400/3DDC84/FFFFFF?text=Android+Circuit",
+  "tags": ["Android", "Workshop", "London", "Developer Events"],
+  "platforms": ["linkedin", "twitter", "facebook"],
+  "additionalLinks": ["https://lnkd.in/e5YtkwWG", "https://marshmallow.com"],
+  "campaign": "Android Circuit Series",
+  "mentions": ["Tom Colvin", "Android Developers"]
+}

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/post_provider.dart';
+import '../providers/tag_provider.dart';
+import '../providers/campaign_provider.dart';
+import '../providers/team_member_provider.dart';
 import '../widgets/organization_header.dart';
 import '../widgets/navigation_rail.dart';
 import '../widgets/post_card.dart';
@@ -26,13 +29,19 @@ class _CalendarScreenState extends State<CalendarScreen> {
   final int _pageSize = 9; // 3x3 grid
   int _currentPage = 0;
   String _selectedFilter = 'All';
+  String? _selectedCampaign;
+  String? _selectedTag;
+  String? _selectedTeamMember;
   final List<String> _filterOptions = [
     'All',
     'Posted',
     'Draft',
     'Today',
     'This Week',
-    'This Month'
+    'This Month',
+    'By Campaign',
+    'By Tag',
+    'By Team Member'
   ];
 
   @override
@@ -166,6 +175,113 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               ],
                             ),
                             const SizedBox(height: 16),
+                            // Additional filter controls
+                            if (_selectedFilter == 'By Campaign' || 
+                                _selectedFilter == 'By Tag' || 
+                                _selectedFilter == 'By Team Member')
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: Row(
+                                  children: [
+                                    if (_selectedFilter == 'By Campaign')
+                                      Expanded(
+                                        child: Consumer<CampaignProvider>(
+                                          builder: (context, campaignProvider, child) {
+                                            return DropdownButtonFormField<String>(
+                                              value: _selectedCampaign,
+                                              decoration: const InputDecoration(
+                                                labelText: 'Select Campaign',
+                                                border: OutlineInputBorder(),
+                                              ),
+                                              items: [
+                                                const DropdownMenuItem<String>(
+                                                  value: null,
+                                                  child: Text('All Campaigns'),
+                                                ),
+                                                ...campaignProvider.campaigns
+                                                    .map((campaign) => DropdownMenuItem(
+                                                          value: campaign.id,
+                                                          child: Text(campaign.name),
+                                                        ))
+                                                    .toList(),
+                                              ],
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _selectedCampaign = value;
+                                                  _currentPage = 0;
+                                                });
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    if (_selectedFilter == 'By Tag')
+                                      Expanded(
+                                        child: Consumer<TagProvider>(
+                                          builder: (context, tagProvider, child) {
+                                            return DropdownButtonFormField<String>(
+                                              value: _selectedTag,
+                                              decoration: const InputDecoration(
+                                                labelText: 'Select Tag',
+                                                border: OutlineInputBorder(),
+                                              ),
+                                              items: [
+                                                const DropdownMenuItem<String>(
+                                                  value: null,
+                                                  child: Text('All Tags'),
+                                                ),
+                                                ...tagProvider.tags
+                                                    .map((tag) => DropdownMenuItem(
+                                                          value: tag.name,
+                                                          child: Text(tag.name),
+                                                        ))
+                                                    .toList(),
+                                              ],
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _selectedTag = value;
+                                                  _currentPage = 0;
+                                                });
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    if (_selectedFilter == 'By Team Member')
+                                      Expanded(
+                                        child: Consumer<TeamMemberProvider>(
+                                          builder: (context, teamProvider, child) {
+                                            return DropdownButtonFormField<String>(
+                                              value: _selectedTeamMember,
+                                              decoration: const InputDecoration(
+                                                labelText: 'Select Team Member',
+                                                border: OutlineInputBorder(),
+                                              ),
+                                              items: [
+                                                const DropdownMenuItem<String>(
+                                                  value: null,
+                                                  child: Text('All Team Members'),
+                                                ),
+                                                ...teamProvider.teamMembers
+                                                    .map((member) => DropdownMenuItem(
+                                                          value: member.name,
+                                                          child: Text(member.name),
+                                                        ))
+                                                    .toList(),
+                                              ],
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _selectedTeamMember = value;
+                                                  _currentPage = 0;
+                                                });
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -730,6 +846,21 @@ class _CalendarScreenState extends State<CalendarScreen> {
         return posts.where((post) {
           return post.date.year == now.year && post.date.month == now.month;
         }).toList();
+      case 'By Campaign':
+        if (_selectedCampaign != null) {
+          return posts.where((post) => post.campaign == _selectedCampaign).toList();
+        }
+        return posts;
+      case 'By Tag':
+        if (_selectedTag != null) {
+          return posts.where((post) => post.tags.contains(_selectedTag)).toList();
+        }
+        return posts;
+      case 'By Team Member':
+        if (_selectedTeamMember != null) {
+          return posts.where((post) => post.postedBy == _selectedTeamMember).toList();
+        }
+        return posts;
       default:
         return posts;
     }

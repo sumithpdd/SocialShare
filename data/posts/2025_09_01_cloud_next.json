@@ -1,0 +1,13 @@
+{
+  "id": "7",
+  "title": "Cloud Next London 2025",
+  "content": "☁️ Get ready for Cloud Next London! Experience the latest in cloud technology, AI, and machine learning. Early bird tickets available now with exclusive GDG London discount.",
+  "date": "2025-09-02T00:00:00.000Z",
+  "isPosted": false,
+  "postedBy": "GDG London Team",
+  "imageUrl": "https://via.placeholder.com/800x400/00BCD4/FFFFFF?text=Cloud+Next",
+  "tags": ["Cloud", "AI/ML", "Google Cloud", "Conference"],
+  "platforms": ["linkedin", "twitter", "facebook"],
+  "additionalLinks": ["https://cloudnext.withgoogle.com", "https://gdg.community.dev/events"],
+  "campaign": "Cloud Next London 2025"
+}

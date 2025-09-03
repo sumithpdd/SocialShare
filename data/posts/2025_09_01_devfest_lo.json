@@ -1,0 +1,13 @@
+{
+  "id": "9",
+  "title": "DevFest London 2025",
+  "content": "🎉 DevFest London is back and bigger than ever! Join us for a full day of technical sessions, workshops, and networking. Early bird registration opens next week!",
+  "date": "2025-09-04T00:00:00.000Z",
+  "isPosted": false,
+  "postedBy": "GDG London Team",
+  "imageUrl": "https://via.placeholder.com/800x400/FF9800/FFFFFF?text=DevFest+London",
+  "tags": ["DevFest", "Conference", "Workshops", "Networking"],
+  "platforms": ["linkedin", "twitter", "facebook", "instagram"],
+  "additionalLinks": ["https://devfest.gdglondon.org", "https://devfest.withgoogle.com"],
+  "campaign": "DevFest London 2025"
+}

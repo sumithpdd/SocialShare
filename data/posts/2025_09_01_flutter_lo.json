@@ -1,0 +1,13 @@
+{
+  "id": "8",
+  "title": "Flutter London Monthly Meetup",
+  "content": "📱 Flutter developers unite! Our monthly meetup is back with talks on Flutter 3.0, state management, and building beautiful UIs. Pizza and networking included!",
+  "date": "2025-09-03T00:00:00.000Z",
+  "isPosted": false,
+  "postedBy": "Flutter London",
+  "imageUrl": "https://via.placeholder.com/800x400/02569B/FFFFFF?text=Flutter+London",
+  "tags": ["Flutter", "Mobile Development", "UI/UX", "Networking"],
+  "platforms": ["linkedin", "twitter", "meetup"],
+  "additionalLinks": ["https://meetup.com/flutter-london", "https://flutter.dev"],
+  "campaign": "Flutter London Monthly"
+}

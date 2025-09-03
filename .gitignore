@@ -33,3 +33,4 @@ app/socialshare/android/app/google-services.json
 app/socialshare/lib/firebase_options.dart
 app/socialshare/public/
 app/socialshare/.firebase/
+data/data/team_members.json

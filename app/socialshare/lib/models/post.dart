@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Post {
   final String id;
@@ -113,6 +114,50 @@ class Post {
       mentions:
           json['mentions'] != null ? List<String>.from(json['mentions']) : [],
     );
+  }
+
+  factory Post.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Post(
+      id: doc.id,
+      title: data['title'] ?? '',
+      content: data['content'] ?? '',
+      date: (data['date'] as Timestamp).toDate(),
+      isPosted: data['isPosted'] ?? false,
+      postedBy: data['postedBy'] ?? '',
+      imageUrl: data['imageUrl'],
+      videoUrl: data['videoUrl'],
+      tags: List<String>.from(data['tags'] ?? []),
+      platforms: (data['platforms'] as List?)
+          ?.map((p) => SocialPlatform.values.firstWhere((sp) => sp.name == p))
+          .toList() ?? [SocialPlatform.linkedin],
+      additionalLinks: List<String>.from(data['additionalLinks'] ?? []),
+      postedAt: data['postedAt'] != null 
+          ? (data['postedAt'] as Timestamp).toDate() 
+          : null,
+      postUrl: data['postUrl'],
+      campaign: data['campaign'],
+      mentions: List<String>.from(data['mentions'] ?? []),
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      'title': title,
+      'content': content,
+      'date': Timestamp.fromDate(date),
+      'isPosted': isPosted,
+      'postedBy': postedBy,
+      'imageUrl': imageUrl,
+      'videoUrl': videoUrl,
+      'tags': tags,
+      'platforms': platforms.map((p) => p.name).toList(),
+      'additionalLinks': additionalLinks,
+      'postedAt': postedAt != null ? Timestamp.fromDate(postedAt!) : null,
+      'postUrl': postUrl,
+      'campaign': campaign,
+      'mentions': mentions,
+    };
   }
 }
 

@@ -40,9 +40,19 @@ class _CustomNavigationRailState extends State<CustomNavigationRail> {
           label: Text('Create'),
         ),
         NavigationRailDestination(
-          icon: Icon(Icons.analytics),
-          selectedIcon: Icon(Icons.analytics, color: AppTheme.primaryBlue),
-          label: Text('Analytics'),
+          icon: Icon(Icons.label),
+          selectedIcon: Icon(Icons.label, color: AppTheme.primaryBlue),
+          label: Text('Tags'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.campaign),
+          selectedIcon: Icon(Icons.campaign, color: AppTheme.primaryBlue),
+          label: Text('Campaigns'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.people),
+          selectedIcon: Icon(Icons.people, color: AppTheme.primaryBlue),
+          label: Text('Team'),
         ),
         NavigationRailDestination(
           icon: Icon(Icons.settings),
@@ -77,12 +87,15 @@ class _CustomNavigationRailState extends State<CustomNavigationRail> {
         context.go('/create');
         break;
       case 3:
-        context.go('/ai-create');
+        context.go('/tags');
         break;
       case 4:
-        // Analytics route - can be implemented later
+        context.go('/campaigns');
         break;
       case 5:
+        context.go('/team');
+        break;
+      case 6:
         // Settings route - can be implemented later
         break;
     }

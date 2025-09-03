@@ -1,0 +1,16 @@
+{
+  "id": "4",
+  "title": "Flutter DevCamp - India Edition",
+  "content": "🚀 We're excited to launch Flutter DevCamp - India Edition 🎉 In collaboration with Career Katta, Garja Maarthi, and Sakpal Knowledge Hub, we're bringing Flutter learning to 1,500+ students across Indian colleges.",
+  "date": "2025-08-30T00:00:00.000Z",
+  "isPosted": true,
+  "postedBy": "Renuka Kelkar",
+  "imageUrl": "https://via.placeholder.com/800x400/02569B/FFFFFF?text=Flutter+DevCamp",
+  "tags": ["Flutter", "India", "Education", "Community"],
+  "platforms": ["linkedin", "twitter"],
+  "additionalLinks": ["https://careerkatta.com", "https://garjamaarthi.com"],
+  "postedAt": "2025-08-30T14:30:00.000Z",
+  "postUrl": "https://www.linkedin.com/posts/gdg-london-flutter-devcamp",
+  "campaign": "Flutter DevCamp India",
+  "mentions": ["Career Katta", "Garja Maarthi", "Sakpal Knowledge Hub"]
+}

@@ -3,6 +3,7 @@ import '../screens/home_screen.dart';
 import '../screens/calendar_screen.dart';
 import '../screens/post_detail_screen.dart';
 import '../screens/create_edit_post_screen.dart';
+import '../screens/tag_management_screen.dart';
 import '../widgets/ai_post_creator.dart';
 import '../models/post.dart';
 
@@ -35,6 +36,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/ai-create',
       builder: (context, state) => const AIPostCreator(),
+    ),
+    GoRoute(
+      path: '/tags',
+      builder: (context, state) => const TagManagementScreen(),
     ),
   ],
 );

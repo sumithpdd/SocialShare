@@ -1,0 +1,41 @@
+{
+  "name": "socialshare-firestore-seeder",
+  "version": "1.0.0",
+  "description": "Firestore seeding script for SocialShare GDG London app",
+  "main": "firestore_seeder.js",
+  "scripts": {
+    "seed": "node firestore_seeder.js",
+    "upload": "node firestore_seeder.js upload",
+    "download": "node firestore_seeder.js download",
+    "seed:posts": "node -e \"require('./firestore_seeder.js').seedPosts()\"",
+    "seed:org": "node -e \"require('./firestore_seeder.js').seedOrganization()\"",
+    "seed:campaigns": "node -e \"require('./firestore_seeder.js').seedCampaigns()\"",
+    "seed:team": "node -e \"require('./firestore_seeder.js').seedTeamMembers()\"",
+    "seed:tags": "node -e \"require('./firestore_seeder.js').seedTags()\"",
+    "seed:platforms": "node -e \"require('./firestore_seeder.js').seedPlatforms()\"",
+    "download:posts": "node -e \"require('./firestore_seeder.js').downloadPosts()\"",
+    "download:org": "node -e \"require('./firestore_seeder.js').downloadOrganization()\"",
+    "download:campaigns": "node -e \"require('./firestore_seeder.js').downloadCampaigns()\"",
+    "download:team": "node -e \"require('./firestore_seeder.js').downloadTeamMembers()\"",
+    "download:tags": "node -e \"require('./firestore_seeder.js').downloadTags()\""
+  },
+  "keywords": [
+    "firebase",
+    "firestore",
+    "seeding",
+    "sync",
+    "upload",
+    "download",
+    "gdg-london",
+    "socialshare"
+  ],
+  "author": "GDG London",
+  "license": "MIT",
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

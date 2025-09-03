@@ -1,0 +1,170 @@
+[
+  {
+    "id": "flutter",
+    "name": "Flutter",
+    "color": "#02569B",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "google-io",
+    "name": "Google I/O",
+    "color": "#4285F4",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "ai-ml",
+    "name": "AI/ML",
+    "color": "#9C27B0",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "workshop",
+    "name": "Workshop",
+    "color": "#FF9800",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "community",
+    "name": "Community",
+    "color": "#4CAF50",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "education",
+    "name": "Education",
+    "color": "#2196F3",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "india",
+    "name": "India",
+    "color": "#FF6B6B",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "tech-careers",
+    "name": "Tech Careers",
+    "color": "#607D8B",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "diversity",
+    "name": "Diversity",
+    "color": "#E91E63",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "podcast",
+    "name": "Podcast",
+    "color": "#795548",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "women-in-tech",
+    "name": "Women in Tech",
+    "color": "#F44336",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "career-growth",
+    "name": "Career Growth",
+    "color": "#8BC34A",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "networking",
+    "name": "Networking",
+    "color": "#00BCD4",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "london",
+    "name": "London",
+    "color": "#673AB7",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "tensorflow",
+    "name": "TensorFlow",
+    "color": "#FF5722",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "hands-on",
+    "name": "Hands-on",
+    "color": "#3F51B5",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "events",
+    "name": "Events",
+    "color": "#009688",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "meetups",
+    "name": "Meetups",
+    "color": "#FFC107",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "android",
+    "name": "Android",
+    "color": "#4CAF50",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "web-development",
+    "name": "Web Development",
+    "color": "#2196F3",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  },
+  {
+    "id": "cloud-computing",
+    "name": "Cloud Computing",
+    "color": "#FF9800",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z",
+    "usageCount": 0
+  }
+]
